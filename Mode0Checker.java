@@ -1,6 +1,6 @@
 import java.io.IOException;
 
-public  class Mode0Checker  {
+public  class Mode0Checker {
 
    private loadFromFile loader = new loadFromFile();
    private final String filename ;
@@ -29,7 +29,7 @@ public  class Mode0Checker  {
         {
             if(!check.isValid(loader.getColumn(i)) )
             {
-                check.printAllsudokuDublicate(1,i); 
+                check.printAllsudokuDublicate(1,i); ;
             }
            
         }
