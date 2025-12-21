@@ -4,7 +4,8 @@ import java.util.TreeMap;
 public class unitCheck
 
 {
-    private static boolean checkValidity = true;
+    private  boolean checkValidity = true;
+    private  boolean checkComplete= true;
     TreeMap<Integer,ArrayList<Integer>> mapLocations = new TreeMap<>();
      TreeMap<Integer,Integer> mapValues = new TreeMap<>();
     public boolean isValid (int[] numbers  )
@@ -65,8 +66,20 @@ public class unitCheck
         System.out.println( t + " " + (index+1) + " " + "#" + duplicateNum + " " + Locations ); ;
     }
 
-    public static boolean isCheckValidity() {
+    public  boolean isCheckValidity() {
         return checkValidity;
+    }
+
+    public  void setCheckValidity(boolean checkValidity) {
+        this.checkValidity = checkValidity;
+    }
+
+    public  boolean isCheckComplete() {
+        return checkComplete;
+    }
+
+    public void setCheckComplete(boolean checkComplete) {
+        this.checkComplete = checkComplete;
     }
 
     public void printAllsudokuDublicate(int type, int index)
@@ -80,6 +93,15 @@ public class unitCheck
                 printPattern( type , index , i , mapLocations.get(i) );
             }
         }
+    }
+
+    public boolean isComplete(int[][] board){
+            for(int i =0 ; i<9 ; i++)
+                for (int j=0 ; j<9 ; j++)
+                    if(board[i][j]==0)
+                    {this.checkComplete=false;
+                        return false;}
+            return true;
     }
 
 }

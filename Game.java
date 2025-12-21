@@ -1,7 +1,7 @@
 class Game
 {
     int[][] board;
-    Game(int[][] board)
+    public Game(int[][] board)
     {
 // IMPORTANT: DON'T COPY THE BOARD BY VALUE
 // USE REFERENCES
