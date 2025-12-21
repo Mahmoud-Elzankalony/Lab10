@@ -70,16 +70,8 @@ public class unitCheck
         return checkValidity;
     }
 
-    public  void setCheckValidity(boolean checkValidity) {
-        this.checkValidity = checkValidity;
-    }
-
     public  boolean isCheckComplete() {
         return checkComplete;
-    }
-
-    public void setCheckComplete(boolean checkComplete) {
-        this.checkComplete = checkComplete;
     }
 
     public void printAllsudokuDublicate(int type, int index)
