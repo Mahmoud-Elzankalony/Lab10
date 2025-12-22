@@ -53,6 +53,13 @@ public class Control implements Controllable
 
     @Override
     public void logUserAction(UserAction userAction) throws IOException {
-
+        LogFile f = new LogFile();
+        
+        // Format: (x, y, val, prev)
+        String logEntry = "(" + userAction.getX() + ", " + userAction.getY() + ", " + 
+                         userAction.getVal() + ", " + userAction.getPrev() + ")\n";
+        
+        f.addLine(logEntry);
+        f.saveToFile();
     }
 }
