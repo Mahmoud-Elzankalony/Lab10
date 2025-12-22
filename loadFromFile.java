@@ -10,11 +10,11 @@ import static java.nio.file.Files.readAllLines;
 public class loadFromFile
 {
     private String filename ;
-    private int[][] content ;
+    int[][] content ;
 
 
 
-    public int[][] getContent(String filename ) throws IOException {
+    public int[][] getContent(String filename) throws IOException {
         this.filename = filename;
         int[][] sudokuBoard = new int[9][9];
         String line;

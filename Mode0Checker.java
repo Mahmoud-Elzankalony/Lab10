@@ -1,4 +1,4 @@
-/*import java.io.IOException;
+import java.io.IOException;
 
 public  class Mode0Checker {
 
@@ -43,4 +43,4 @@ public  class Mode0Checker {
 
     }
 
-}*/
+}

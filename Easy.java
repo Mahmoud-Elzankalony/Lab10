@@ -1,17 +1,11 @@
 import java.io.IOException;
 
-public class Easy {
-  
-    private RemoveRandomly rr ;
-    private int[][] easyContent ;
-    private loadFromFile loader = new loadFromFile();
+public class Easy extends Level {
 
-    public Easy() throws IOException {
+    public Easy() throws IOException
+    {
         this.rr = new RemoveRandomly() ;
-        this.easyContent = rr.removeRandomly(10) ;
-        loader.saveToFile("levels/easy.csv",this.easyContent) ;
-        
+        this.Content = rr.removeRandomly(10) ;
+        loader.saveToFile("D:\\programming\\java\\lab10\\Lab10-main_downloaded_from_github_v1\\levels\\easy.csv",this.Content) ;
     }
-
-    
 } 

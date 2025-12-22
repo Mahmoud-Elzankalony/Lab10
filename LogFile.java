@@ -1,76 +1,64 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class LogFile
-{
-    String filename = "FILENAME";
-    ArrayList<String> content;
+public class LogFile {
+    String filename = "D:\\programming\\java\\lab10\\Lab10-main_downloaded_from_github_v1\\levels\\log.txt";
+    // FIX: Initialize the list here
+    ArrayList<String> content = new ArrayList<>();
 
-    // Default constructor
-    public LogFile()
-    {
-        this.content = new ArrayList<>();
-    }
+    public void loadFromFile() throws IOException {
+        File file = new File(filename);
+        if (!file.exists()) return;
 
-    // Constructor with filename
-    public LogFile(String filename)
-    {
-        this.filename = filename;
-        this.content = new ArrayList<>();
-    }
-
-    public void loadFromFile() throws IOException
-    {
-        BufferedReader br = new BufferedReader(new FileReader(filename)) ;
-        while (br.readLine() != null)
-        {
-            content.add(br.readLine());
+        content.clear();
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                content.add(line); // Fixed logic: previously skipped lines
+            }
         }
     }
 
-    public void saveToFile() throws IOException
-    {
-        BufferedWriter bw = new BufferedWriter(new FileWriter(filename)) ;
-        for (String s : content)
-        {
-            bw.write(s);
+    public void saveToFile() throws IOException {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) {
+            for (String s : content) {
+                if ( s.equals(content.get(content.size()-1)) )
+                {
+                    bw.write(s);
+                }
+                else
+                {
+                    bw.write(s);
+                    bw.newLine();
+                }
+            }
         }
     }
 
-    public ArrayList<String> getContent()
+    public void addLine(String line) {
+        content.add(line);
+    }
+
+    public void removeLastLine() {
+        if (!content.isEmpty()) content.remove(content.size() - 1);
+    }
+
+    public String returnLastLine() {
+        if (content.isEmpty()) return null;
+        return content.getLast();
+    }
+    public String returnBeforeLastLine()
     {
+        if (content.isEmpty() || content.size() < 2) return null;
+        return content.get(content.size() - 2);
+    }
+
+    public ArrayList<String> getContent() {
         return content;
     }
 
-    public void addLine (String line)
+    public String convert(int x , int y, String newValue , int prev )
     {
-        content.add(line);
+        return "(" + x + "," + y + "," + newValue + "," + prev+")";
     }
-
-    public void removeLastLine ()
-    {
-        content.remove(content.size()-1);
-    }
-
-    public String returnLastLine ()
-    {
-        return content.get(content.size()-1);
-    }
-
-    // Append line directly to file (for immediate writing)
-    public void appendLine(String line) throws IOException
-    {
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))) // true = append mode
-        {
-            bw.write(line);
-            bw.newLine();
-        }
-        // Also add to content for undo functionality
-        if (content == null)
-        {
-            content = new ArrayList<>();
-        }
-        content.add(line);
-    }
-
 }

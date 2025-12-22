@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.TreeMap;
 
 public class unitCheck
@@ -6,9 +8,9 @@ public class unitCheck
 {
     private  boolean checkValidity = true;
     private  boolean checkComplete= true;
-    TreeMap<Integer,ArrayList<Integer>> mapLocations = new TreeMap<>();
-     TreeMap<Integer,Integer> mapValues = new TreeMap<>();
-    public boolean isValid (int[] numbers  )
+    HashMap<Integer,ArrayList<Integer>> mapLocations = new HashMap<>();
+    HashMap<Integer,Integer> mapValues = new HashMap<>();
+    public boolean isValid (int[] numbers)
     {
 
         for ( int i = 1 ; i < 10 ; i++ )
@@ -19,16 +21,23 @@ public class unitCheck
         int flag = 1 ;
         for ( int i = 0; i < numbers.length ; i++ )
         {
-            if (mapValues.get(numbers[i]) == 0 )
+            if ( numbers[i] == 0 )
             {
-                mapValues.put( numbers[i], 1 );
+                continue;
             }
             else
             {
-                mapValues.put( numbers[i], mapValues.get(numbers[i]) + 1 );
-                flag = 0 ;
+                if (mapValues.get(numbers[i]) == 0 )
+                {
+                    mapValues.put( numbers[i], 1 );
+                }
+                else
+                {
+                    mapValues.put( numbers[i], mapValues.get(numbers[i]) + 1 );
+                    flag = 0 ;
+                }
+                mapLocations.get(numbers[i]).add( i+1 );
             }
-            mapLocations.get(numbers[i]).add( i+1 );
         }
        
         if ( flag == 1 )
@@ -39,7 +48,7 @@ public class unitCheck
         {
             if(checkValidity== true)
             {
-                System.out.println("Invalid");
+                //System.out.println("Invalid");
                 checkValidity=false;
             }
             return false ;
@@ -96,4 +105,54 @@ public class unitCheck
             return true;
     }
 
+    public int[] get_box_from_row_and_column(int row, int column) throws IOException {
+        loadFromFile file =  new loadFromFile();
+        file.getContent("D:\\programming\\java\\lab10\\Lab10-main_downloaded_from_github_v1\\levels\\current.csv");
+
+        if ( row >= 0 & row <= 2 )
+        {
+            if ( column >= 0 & column <=2 )
+            {
+                return file.getBox(0);
+            }
+            else if ( column >= 3 & column <=5 )
+            {
+                return file.getBox(1);
+            }
+            else
+            {
+                return file.getBox(2);
+            }
+        }
+        else if ( row >= 3 & row <=5 )
+        {
+            if ( column >= 0 & column <=2 )
+            {
+                return file.getBox(3);
+            }
+            else if ( column >= 3 & column <=5 )
+            {
+                return file.getBox(4);
+            }
+            else
+            {
+                return file.getBox(5);
+            }
+        }
+        else
+        {
+            if ( column >= 0 & column <=2 )
+            {
+                return file.getBox(6);
+            }
+            else if ( column >= 3 & column <=5 )
+            {
+                return file.getBox(7);
+            }
+            else
+            {
+                return file.getBox(8);
+            }
+        }
+    }
 }

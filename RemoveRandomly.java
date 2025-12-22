@@ -7,7 +7,7 @@ public class RemoveRandomly {
   private int[][] content;
 
     public RemoveRandomly() throws IOException {
-     this.content=loader.getContent("test1_valid.csv") ;
+     this.content=loader.getContent("D:\\programming\\java\\lab10\\Lab10-main_downloaded_from_github_v1\\levels\\test1_valid.csv") ;
     
     }
 
