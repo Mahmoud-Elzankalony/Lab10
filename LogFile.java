@@ -6,6 +6,19 @@ public class LogFile
     String filename = "FILENAME";
     ArrayList<String> content;
 
+    // Default constructor
+    public LogFile()
+    {
+        this.content = new ArrayList<>();
+    }
+
+    // Constructor with filename
+    public LogFile(String filename)
+    {
+        this.filename = filename;
+        this.content = new ArrayList<>();
+    }
+
     public void loadFromFile() throws IOException
     {
         BufferedReader br = new BufferedReader(new FileReader(filename)) ;
@@ -42,6 +55,22 @@ public class LogFile
     public String returnLastLine ()
     {
         return content.get(content.size()-1);
+    }
+
+    // Append line directly to file (for immediate writing)
+    public void appendLine(String line) throws IOException
+    {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename, true))) // true = append mode
+        {
+            bw.write(line);
+            bw.newLine();
+        }
+        // Also add to content for undo functionality
+        if (content == null)
+        {
+            content = new ArrayList<>();
+        }
+        content.add(line);
     }
 
 }
