@@ -43,9 +43,9 @@ public class Sudokugamedriver {
         }
 
         if(check.isComplete(board)==false )
-            throw new RuntimeException("the source game is not VALID ");
+            throw new IOException()Exception("the source game is not VALID ");
         if(check.isCheckValidity()==false)
-            throw new RuntimeException("the source game is incomplete");
+            throw new IOException("the source game is incomplete");
 
     }
 }
